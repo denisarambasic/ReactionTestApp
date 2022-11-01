@@ -1,18 +1,24 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <h1>Reaction Game</h1>
+  <p>Test your reaction speed</p>
+  <v-btn
+      class="ma-2"
+      :disabled="$store.state.gameStarted"
+      color="success"
+      @click="$store.commit('startGame')"
+    >
+      Start Game
+  </v-btn>
+  <Block v-if="$store.state.gameStarted" />
+  <AddPlayer v-if="$store.state.savePlayerFormVisible" />
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Block from '../components/Block.vue'
+import AddPlayer from '../components/AddPlayer.vue'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  components: { Block, AddPlayer },
 }
 </script>
